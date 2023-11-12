@@ -1,0 +1,42 @@
+---
+import { SITE } from "@config";
+import "@styles/base.css";
+
+export interface Props {
+  title?: string;
+  author?: string;
+  description?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = SITE.title,
+  author = SITE.author,
+  description = SITE.desc,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta name="theme-color" content="" />
+  </head>
+  <body
+    class="flex min-h-[100svh] flex-col bg-skin-fill font-mono text-skin-base
+  selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted"
+  >
+    <slot />
+  </body>
+</html>

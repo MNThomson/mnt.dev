@@ -12,3 +12,4 @@
 !.eslintrc.cjs
 !tailwind.config.cjs
 !README.md
+!astro.config.mjs
